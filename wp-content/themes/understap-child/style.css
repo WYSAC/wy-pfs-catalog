@@ -14,13 +14,12 @@
 
 
 /* =============================
-        Root Colors & Fonts
+        REFERENCE
    ============================= */
 
-/*
-*   Modified color palette from parent theme based on Bootstrap color names
-*       [] Match these to UI of WY-PFS Workbook Site
-*/
+   /*
+   Root colors and fonts from Understrap
+   [] Match these to the CORE UI that we will be using for WY PFS Workbook
 
    :root {
      --blue: #007bff;
@@ -44,20 +43,24 @@
      --danger: #dc3545;
      --light: #f8f9fa;
      --dark: #343a40;
-     /* Screen Size Breakpoints - These don't need to change */
+
      --breakpoint-xs: 0;
      --breakpoint-sm: 576px;
      --breakpoint-md: 768px;
      --breakpoint-lg: 992px;
      --breakpoint-xl: 1200px;
-     /* Fonts */
+
      --font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
      --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
+     */
 
 /* =============================
          TYPOGRAPHY
   ============================= */
 
+body {
+  font-family: "Georgia", "Times New Roman", serif;
+}
 
 
 
