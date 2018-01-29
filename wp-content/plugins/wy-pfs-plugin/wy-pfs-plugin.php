@@ -40,7 +40,7 @@ function custom_post_type() {
         * Parent and child items. A non-hierarchical CPT
         * is like Posts.
         */
-        'hierarchical'        => false,
+        'hierarchical'        => false, //they are like posts, not pages (no "sub-strategies")
         'public'              => true,
         'show_ui'             => true,
         'show_in_menu'        => true,
@@ -65,6 +65,54 @@ function custom_post_type() {
 */
 
 add_action( 'init', 'custom_post_type', 0 );
+
+
+/* CUSTOM TAXONOMIES */
+
+
+if ( ! function_exists( 'custom_taxonomy' ) ) {
+
+// Register Causal Domain Taxonomy
+function custom_taxonomy() {
+
+	$labels = array(
+		'name'                       => _x( 'Causal Domains', 'Taxonomy General Name', 'text-domain' ),
+		'singular_name'              => _x( 'Causal Domain', 'Taxonomy Singular Name', 'text-domain' ),
+		'menu_name'                  => __( 'Causal Domains', 'text-domain' ),
+		'all_items'                  => __( 'All Causal Domains', 'text-domain' ),
+		'parent_item'                => __( 'Parent Causal Domains', 'text-domain' ),
+		'parent_item_colon'          => __( 'Parent Causal Domain:', 'text-domain' ),
+		'new_item_name'              => __( 'New Casual Domain Name', 'text-domain' ),
+		'add_new_item'               => __( 'Add New Causal Domain', 'text-domain' ),
+		'edit_item'                  => __( 'Edit Causal Domain', 'text-domain' ),
+		'update_item'                => __( 'Update Causal Domain', 'text-domain' ),
+		'view_item'                  => __( 'View Causal Domain', 'text-domain' ),
+		'separate_items_with_commas' => __( 'Separate causal domains with commas', 'text-domain' ),
+		'add_or_remove_items'        => __( 'Add or remove causal domains', 'text-domain' ),
+		'choose_from_most_used'      => __( 'Choose from the most used causal domains', 'text-domain' ),
+		'popular_items'              => __( 'Popular Causal Domains', 'text-domain' ),
+		'search_items'               => __( 'Search Causal Domains', 'text-domain' ),
+		'not_found'                  => __( 'Not Found', 'text-domain' ),
+		'no_terms'                   => __( 'No causal domains', 'text-domain' ),
+		'items_list'                 => __( 'Causal domain list', 'text-domain' ),
+		'items_list_navigation'      => __( 'Causal domain list navigation', 'text-domain' ),
+	);
+	$args = array(
+		'labels'                     => $labels,
+		'hierarchical'               => true, // they behave like categories
+		'public'                     => true,
+		'show_ui'                    => true,
+		'show_admin_column'          => true,
+		'show_in_nav_menus'          => true,
+		'show_tagcloud'              => true,
+	);
+  // REgister the taxonomy, based on the $args, but only for the Strategy Post Type
+	register_taxonomy( 'causal-domain', array( 'strategy' ), $args );
+
+}
+add_action( 'init', 'custom_taxonomy', 0 );
+
+}
 
 
 ?>
