@@ -76,6 +76,19 @@ body {
   text-transform: uppercase;
 }
 
+/* Strategies / Sidebar */
+
+/* Container */
+#sidebar-right-strategies {
+}
+
+/* Single widget within Strategies sidebar */
+#sidebar-right-strategies .widget {
+  border:solid thin rgb(255, 230, 246);
+  padding:5px;
+  margin-bottom:25px;
+}
+
 
 /* =============================
         MEDIA QUERIES
