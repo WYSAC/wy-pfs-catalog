@@ -62,9 +62,19 @@ body {
   font-family: "Georgia", "Times New Roman", serif;
 }
 
+/* =============================
+         STRATEGIES
+  ============================= */
 
+/* Strategies / Single Post */
 
-
+.entry-meta-box {
+  background-color: rgba(228,228,228, 0.35);
+  border: solid thin rgba(180, 180, 180, 0.25);
+  padding: 5px;
+  font-size: 0.75em;
+  text-transform: uppercase;
+}
 
 
 /* =============================
