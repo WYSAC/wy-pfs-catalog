@@ -32,7 +32,8 @@ $indicate_evidence = get_field('strength_of_evidence');
 
 	<header class="entry-header">
     <!--Updated date & time -->
-    <p class="h6">Updated: <?php the_modified_time('F j, Y') ?> at <?php the_modified_time('g:i a');?></p>
+    <?php the_favorites_button();?>
+    <span>Updated: <?php the_modified_time('F j, Y') ?> at <?php the_modified_time('g:i a');?></span>
 
 		<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
 
