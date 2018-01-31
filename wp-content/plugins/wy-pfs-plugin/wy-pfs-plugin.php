@@ -34,7 +34,20 @@
 *  ===================================================== */
 
 
+/* ============================
+*   CORE UI Styles and Scripts
+*  ============================ */
 
+//Add CSS and js for Core UI
+
+function my_assets() {
+	wp_enqueue_style( 'theme-style', get_stylesheet_uri(), array( 'coreui-style' ) );
+	wp_enqueue_style( 'coreui-style', get_stylesheet_directory_uri() . '/css/coreui.style.min.css' );
+
+	wp_enqueue_script( 'coreui-app', get_stylesheet_directory_uri() . '/js/app.js', array( 'jquery' ), '1.0', true );
+}
+
+add_action( 'wp_enqueue_scripts', 'my_assets' );
 
 /* ============================
 *   CUSTOM POST TYPES
