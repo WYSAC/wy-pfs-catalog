@@ -116,6 +116,40 @@ add_action( 'widgets_init', 'eleanor_widgets_init' );
 /**
  * Enqueue scripts and styles.
  */
+ /* ============================
+ *  BOOTSTRAP, CORE UI & LOCAL STYLE
+ *  ============================ */
+
+ function eleanor_theme_styles() {
+ 	//Bootstrap 4 CDN
+ 	wp_enqueue_style('bootstrap_css', 'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css');
+ 	//Theme css
+ 	wp_enqueue_style('main_css', get_template_directory_uri() . '/style.css' );
+	//Core UI
+	wp_enqueue_style('coreui_styles', get_template_directory_uri() . '/css/coreui.style.min.css');
+ }
+
+ add_action( 'wp_enqueue_scripts', 'eleanor_theme_styles');
+
+ /* ============================
+ *  BOOTSTRAP, CORE UI & LOCAL SCRIPTS
+ *  ============================ */
+ function eleanor_theme_scripts() {
+	wp_enqueue_script('jquery_slim', 'https://code.jquery.com/jquery-3.2.1.slim.min.js', array( 'jquery' ), null, true);
+	//popper
+	wp_enqueue_script('popper_js', 'https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js', array('jquery'), null, true);
+ 	//Bootstrap 4 CDN
+ 	wp_enqueue_script('bootstrap_js', 'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js', array( 'jquery' ), null, true);
+	//coreui app.js
+	wp_enqueue_script('coreui_app_js', get_template_directory_uri() . '/js/app.js', array('jquery'), null, true);
+
+ }
+ add_action('wp_enqueue_scripts', 'eleanor_theme_scripts');
+
+ /* ============================
+ *  Add Theme-specific scripts and styles AFTER Bootstrap and CoreUI
+ *  ============================ */
+
 function eleanor_scripts() {
 	wp_enqueue_style( 'eleanor-style', get_stylesheet_uri() );
 
@@ -149,10 +183,17 @@ require get_template_directory() . '/inc/template-functions.php';
  */
 require get_template_directory() . '/inc/customizer.php';
 
+/* Bootstrap NavWalker */
+
+require get_template_directory() . '/inc/bootstrap-navwalker.php';
+
+register_nav_menus( array(
+	'menu-1'	=> esc_html__( 'Primary', 'eleanor'),
+));
+
 /**
  * Load Jetpack compatibility file.
  */
 if ( defined( 'JETPACK__VERSION' ) ) {
 	require get_template_directory() . '/inc/jetpack.php';
 }
-

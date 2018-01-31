@@ -1,13 +1,13 @@
 <?php
 /**
- * The header for our theme
- *
- * This is the template that displays all of the <head> section and everything up until <div id="content">
- *
- * @link https://developer.wordpress.org/themes/basics/template-files/#template-partials
- *
- * @package Eleanor
- */
+* The header for our theme
+*
+* This is the template that displays all of the <head> section and everything up until <div id="content">
+*
+* @link https://developer.wordpress.org/themes/basics/template-files/#template-partials
+*
+* @package Eleanor
+*/
 
 ?>
 <!doctype html>
@@ -20,37 +20,35 @@
 	<?php wp_head(); ?>
 </head>
 
-<body <?php body_class(); ?>>
-<div id="page" class="site">
-	<a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Skip to content', 'eleanor' ); ?></a>
+<body <?php body_class('app footer-fixed'); ?>>
+	<div id="page" class="site">
+		<a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Skip to content', 'eleanor' ); ?></a>
 
-	<header id="masthead" class="site-header">
-		<div class="site-branding">
-			<?php
-			the_custom_logo();
-			if ( is_front_page() && is_home() ) : ?>
-				<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
-			<?php else : ?>
-				<p class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></p>
-			<?php
-			endif;
+		<header id="masthead" class="app-header">
 
-			$description = get_bloginfo( 'description', 'display' );
-			if ( $description || is_customize_preview() ) : ?>
-				<p class="site-description"><?php echo $description; /* WPCS: xss ok. */ ?></p>
-			<?php
-			endif; ?>
-		</div><!-- .site-branding -->
+			<nav class="navbar navbar-expand-lg navbar-light bg-light ">
+				<!--Branding Name for Tiny Screens-->
+				<a href="<?php bloginfo('url'); ?>" title="<?php bloginfo('name'); ?>" class="navbar-brand d-inline d-md-none d-lg-done d-xl-none">WYPFSABC</a>
+				<!--Branding Name for Regular -> XL Screens-->
+				<a href="<?php bloginfo('url'); ?>" title="<?php bloginfo('name'); ?>" class="navbar-brand d-none d-md-inline d-lg-inline d-xl-inline"><?php bloginfo('name'); ?></a>
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-content" aria-controls="navbar-content" aria-expanded="false" aria-label="<?php esc_html_e( 'Toggle Navigation', 'eleanor' ); ?>">
+					<span class="navbar-toggler-icon"></span>
+				</button>
 
-		<nav id="site-navigation" class="main-navigation">
-			<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e( 'Primary Menu', 'eleanor' ); ?></button>
-			<?php
-				wp_nav_menu( array(
-					'theme_location' => 'menu-1',
-					'menu_id'        => 'primary-menu',
-				) );
-			?>
-		</nav><!-- #site-navigation -->
-	</header><!-- #masthead -->
+				<div class="collapse navbar-collapse" id="navbar-content">
+					<?php
+					wp_nav_menu( array(
+						'theme_location' => 'menu-1',
+						'menu_id'        => 'primary-menu',
+						'container'      => false,
+						'depth'          => 2,
+						'menu_class'     => 'navbar-nav mr-auto',
+						'walker'         => new Bootstrap_NavWalker(),
+						'fallback_cb'    => 'Bootstrap_NavWalker::fallback',
+					) );
+					?>
+				</div>
+			</nav>
+		</header><!-- #masthead -->
 
-	<div id="content" class="site-content">
+		<div id="content" class="site-content container app-body">
