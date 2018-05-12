@@ -12,7 +12,9 @@
 ?>
 
 	</div><!-- #content -->
-</div><!--.row-->
+</div><!--card-body-->
+</div><!--card-->
+</main><!--.row-->
 
 	<footer id="colophon" class="site-footer app-footer">
 		<div class="site-info">

@@ -9,7 +9,7 @@
 
 ?>
 
-<aside id="secondary" class="widget-area col-md-4">
+<aside id="secondary" class="widget-area col">
   <!-- ===========================
   Effectiveness
   =========================== -->

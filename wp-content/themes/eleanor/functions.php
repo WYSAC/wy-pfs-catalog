@@ -45,6 +45,7 @@ if ( ! function_exists( 'eleanor_setup' ) ) :
 		// This theme uses wp_nav_menu() in one location.
 		register_nav_menus( array(
 			'menu-1' => esc_html__( 'Primary', 'eleanor' ),
+			'menu-2' => esc_html__( 'Sidebar Navigation', 'eleanor')
 		) );
 
 		/*
@@ -198,6 +199,7 @@ require get_template_directory() . '/inc/bootstrap-navwalker.php';
 
 register_nav_menus( array(
 	'menu-1'	=> esc_html__( 'Primary', 'eleanor'),
+	'menu-2' => esc_html__( 'Sidebar Navigation', 'eleanor')
 ));
 
 /**

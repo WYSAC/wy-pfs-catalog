@@ -20,9 +20,9 @@
 	<?php wp_head(); ?>
 </head>
 
-<body <?php body_class('app footer-fixed'); ?>>
+<body <?php body_class('app footer-fixed header-fixed'); ?>>
 	<div id="page" class="site">
-		<a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Skip to content', 'eleanor' ); ?></a>
+		<a class="skip-link screen-reader-text sr-only" href="#content"><?php esc_html_e( 'Skip to content', 'eleanor' ); ?></a>
 
 		<header id="masthead" class="app-header">
 
@@ -51,5 +51,8 @@
 			</nav>
 		</header><!-- #masthead -->
 
-		<div id="content" class="site-content container app-body">
-						<div class="row">
+		<div id="content" class="site-content container-fluid app-body">
+			<?php get_sidebar('secondary-nav')?>
+						<main class="main">
+							<div class="card">
+								<div class="row card-body">
