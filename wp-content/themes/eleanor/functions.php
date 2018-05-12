@@ -127,6 +127,7 @@ add_action( 'widgets_init', 'eleanor_widgets_init' );
  	wp_enqueue_style('main_css', get_template_directory_uri() . '/style.css' );
 	//Core UI
 	wp_enqueue_style('coreui_styles', get_template_directory_uri() . '/css/coreui.style.min.css');
+
  }
 
  add_action( 'wp_enqueue_scripts', 'eleanor_theme_styles');
@@ -162,6 +163,14 @@ function eleanor_scripts() {
 	}
 }
 add_action( 'wp_enqueue_scripts', 'eleanor_scripts' );
+
+function wpb_load_fa() {
+
+wp_enqueue_style( 'wpb-fa', 'https://use.fontawesome.com/releases/v5.0.13/css/all.css' );
+
+}
+
+add_action( 'wp_enqueue_scripts', 'wpb_load_fa' );
 
 /**
  * Implement the Custom Header feature.

@@ -1,83 +1,104 @@
 <?php
 /**
- * Template part for displaying posts
- *
- * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
- *
- * @package Eleanor
- */
+* Template part for displaying posts
+*
+* @link https://developer.wordpress.org/themes/basics/template-hierarchy/
+*
+* @package Eleanor
+*/
 
- /*  NOTES
- *   - The Favorites/Bookmarked button is styled and managed with Favorite Plugin
- *   - Content is _mostly_ managed with ACFs
- */
-
- // Get all the ACFs used on this page that may require an if statement
-
- // Discussion of Effectiveness
- $discuss_effect_alcohol = get_field('discussion_alcohol');
- $discuss_effect_tobacco = get_field('discussion_tobacco');
- $discuss_effect_other = get_field('other_drugs');
-
- // References & Further Reading
- $refer_descript = get_field('references_description');
- $refer_evidence = get_field('references_evidence');
- $refer_reading = get_field('references_further_reading');
-
- // Indicators of Effectiveness and Strength of Evidence
- $indicate_effect = get_field('indicator_of_effectiveness');
- $indicate_evidence = get_field('strength_of_evidence');
+/*  NOTES
+*   - The Favorites/Bookmarked button is styled and managed with Favorite Plugin
+*   - Content is _mostly_ managed with ACFs
+*/
 
 
 ?>
 
-<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-	<header class="entry-header">
-		<?php
-		if ( is_singular() ) :
-			?>
-			<!--Updated date & time -->
-	    <?php the_favorites_button();?>
-	    <span>Updated: <?php the_modified_time('F j, Y') ?> at <?php the_modified_time('g:i a');?></span>
-			<?php the_title( '<h1 class="entry-title">', '</h1>' );
-		else :
-			the_title( '<h2 class="entry-title"><a href="' . esc_url( get_permalink() ) . '" rel="bookmark">', '</a></h2>' );
-		endif;
+<article id="post-<?php the_ID(); ?>" <?php post_class(); ?> class="col-md-8">
+  <!-- ===========================
+  ENTRY HEADER
+  =========================== -->
+  <header class="entry-header">
+    <?php
+    if ( is_singular() ) :
+      ?>
+      <!--Favorite Button-->
+      <?php the_favorites_button();?>
+      <?php the_title( '<h1 class="entry-title">', '</h1>' );
+      else :
+        the_title( '<h2 class="entry-title"><a href="' . esc_url( get_permalink() ) . '" rel="bookmark">', '</a></h2>' );
+      endif;
 
-		if ( 'post' === get_post_type() ) : ?>
-		<div class="entry-meta">
-			<p>Used in Wyoming: <?php the_field('used_in_wyoming')?></p>
-			<p>Other names: <?php the_field('other_names')?></p>
-		</div><!-- .entry-meta -->
-		<?php
-		endif; ?>
-	</header><!-- .entry-header -->
+      if ( 'strategies' === get_post_type() ) : ?>
+      <div class="entry-meta">
+        <!--Updated date & time -->
+        <small>Updated: <?php the_modified_time('F j, Y') ?> at <?php the_modified_time('g:i a');?></small>
+        <p class="font-italic"><small>Also known as... <?php the_field('other_names')?></small></p>
+      </div><!-- .entry-meta -->
+      <?php
+    endif; ?>
+  </header><!-- .entry-header -->
+  <!-- ===========================
+  ENTRY Content
+  =========================== -->
 
-	<?php eleanor_post_thumbnail(); ?>
+  <div class="entry-content">
+    <!-- ===========================
+        Content / Description
+    =========================== -->
+    <h2>Description of Strategy</h2>
+    <?php the_content(); ?>
+    <!-- ===========================
+        Content / Discussion
+    =========================== -->
+    <h2>Discussion of Effectiveness</h2>
+    <!--Alcohol-->
+    <?php if( get_field('discussion_alcohol') ): ?>
+      <h3>Alcohol</h3>
+      <p><?php the_field('discussion_alcohol') ?></p>
+    <?php endif; ?>
+        <!--Tobacco-->
+    <?php if( get_field('discussion_tobacco') ): ?>
+      <h3>Tobacco</h3>
+      <p><?php the_field('discussion_tobacco') ?></p>
+    <?php endif; ?>
+        <!--Other Drugs-->
+    <?php if( get_field('other_drugs') ): ?>
+      <h3>Prescription & Other Drugs</h3>
+      <p><?php the_field('other_drugs') ?></p>
+    <?php endif; ?>
 
-	<div class="entry-content">
-		<?php
-			the_content( sprintf(
-				wp_kses(
-					/* translators: %s: Name of current post. Only visible to screen readers */
-					__( 'Continue reading<span class="screen-reader-text"> "%s"</span>', 'eleanor' ),
-					array(
-						'span' => array(
-							'class' => array(),
-						),
-					)
-				),
-				get_the_title()
-			) );
-
-			wp_link_pages( array(
-				'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'eleanor' ),
-				'after'  => '</div>',
-			) );
-		?>
-	</div><!-- .entry-content -->
-
-	<footer class="entry-footer">
-		<?php eleanor_entry_footer(); ?>
-	</footer><!-- .entry-footer -->
+  </div><!-- .entry-content -->
+  <!-- ===========================
+  ENTRY FOOTER
+  =========================== -->
+  <footer class="entry-footer">
+    <!-- ===========================
+    Reference tabs
+    =========================== -->
+    <h2>References</h3>
+    <ul class="nav nav-tabs" id="reference-tabs" role="tablist">
+      <li class="nav-item">
+        <a class="nav-link active" id="strategy-tab" data-toggle="tab" href="#strategy" role="tab" aria-controls="strategy" aria-selected="true">Strategy Description</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="evidence-tab" data-toggle="tab" href="#evidence" role="tab" aria-controls="evidence" aria-selected="false">Evidence Base</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="further-tab" data-toggle="tab" href="#further" role="tab" aria-controls="further" aria-selected="false">Further Reading</a>
+      </li>
+    </ul>
+    <div class="tab-content" id="reference-tabs-content">
+      <div class="tab-pane fade show active" id="strategy" role="tabpanel" aria-labelledby="strategy-tab">
+      <?php the_field('references_description'); ?>
+    </div>
+      <div class="tab-pane fade" id="evidence" role="tabpanel" aria-labelledby="evidence-tab">
+            <?php the_field('references_evidence'); ?>
+          </div>
+      <div class="tab-pane fade" id="further" role="tabpanel" aria-labelledby="further-tab">
+            <?php the_field('references_further_reading'); ?>
+          </div>
+    </div>
+  </footer><!-- .entry-footer -->
 </article><!-- #post-<?php the_ID(); ?> -->

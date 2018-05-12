@@ -12,6 +12,7 @@
 ?>
 
 	</div><!-- #content -->
+</div><!--.row-->
 
 	<footer id="colophon" class="site-footer app-footer">
 		<div class="site-info">

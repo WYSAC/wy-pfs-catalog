@@ -35,21 +35,6 @@
 
 
 /* ============================
-*   CORE UI Styles and Scripts
-*  ============================ */
-
-//Add CSS and js for Core UI
-
-function my_assets() {
-	wp_enqueue_style( 'theme-style', get_stylesheet_uri(), array( 'coreui-style' ) );
-	wp_enqueue_style( 'coreui-style', get_stylesheet_directory_uri() . '/css/coreui.style.min.css' );
-
-	wp_enqueue_script( 'coreui-app', get_stylesheet_directory_uri() . '/js/app.js', array( 'jquery' ), '1.0', true );
-}
-
-add_action( 'wp_enqueue_scripts', 'my_assets' );
-
-/* ============================
 *   CUSTOM POST TYPES
 *  ============================ */
 
@@ -80,9 +65,9 @@ function custom_post_type() {
         'description'         => __( 'Environmental Strategies', 'eleanor' ),
         'labels'              => $labels,
         // Features this CPT supports in Post Editor
-        'supports'            => array( 'title', 'editor', ),
+        'supports'            => array( 'title', 'editor' ),
         // You can associate this CPT with a taxonomy or custom taxonomy.
-        'taxonomies'          => array( 'causal-domain' ),
+        'taxonomies'          => array( 'causal-domain', 'tobacco-goals'),
         /* A hierarchical CPT is like Pages and can have
         * Parent and child items. A non-hierarchical CPT
         * is like Posts.
