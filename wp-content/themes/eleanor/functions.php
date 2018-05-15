@@ -128,6 +128,8 @@ add_action( 'widgets_init', 'eleanor_widgets_init' );
  	wp_enqueue_style('main_css', get_template_directory_uri() . '/style.css' );
 	//Core UI
 	wp_enqueue_style('coreui_styles', get_template_directory_uri() . '/css/coreui.style.min.css');
+	//dataTables
+	wp_enqueue_style('datatables_bootstrap_css', 'https://cdn.datatables.net/v/bs4/dt-1.10.16/fh-3.1.3/datatables.min.css');
 
  }
 
@@ -144,6 +146,11 @@ add_action( 'widgets_init', 'eleanor_widgets_init' );
  	wp_enqueue_script('bootstrap_js', 'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js', array( 'jquery' ), null, true);
 	//coreui app.js
 	wp_enqueue_script('coreui_app_js', get_template_directory_uri() . '/js/app.js', array('jquery'), null, true);
+
+	//Bootstrap 4 CDN
+	wp_enqueue_script('datatables_js', 'https://cdn.datatables.net/v/bs4/dt-1.10.16/fh-3.1.3/datatables.min.js', array( 'jquery' ), null, true);
+	//dataTables_archive.js
+	wp_enqueue_script('dataTablesArchive_js', get_template_directory_uri() . '/js/dataTables_archive.js', array('jquery'), null, true);
 
  }
  add_action('wp_enqueue_scripts', 'eleanor_theme_scripts');
@@ -208,3 +215,19 @@ register_nav_menus( array(
 if ( defined( 'JETPACK__VERSION' ) ) {
 	require get_template_directory() . '/inc/jetpack.php';
 }
+
+/* CUSTOM Read More Link */
+/* Modify the read more link on the_excerpt() */
+
+function et_excerpt_length($length) {
+    return 20;
+}
+add_filter('excerpt_length', 'et_excerpt_length');
+
+/* Add a link  to the end of our excerpt contained in a div for styling purposes and to break to a new line on the page.*/
+
+function et_excerpt_more($more) {
+    global $post;
+    return '<div class="view-full-post"><a href="'. get_permalink($post->ID) . '" class="view-full-post-btn">View Strategy</a></div>';
+}
+add_filter('excerpt_more', 'et_excerpt_more');

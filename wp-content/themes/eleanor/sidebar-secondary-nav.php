@@ -16,7 +16,6 @@ if ( ! is_active_sidebar( 'sidebar-1' ) ) {
 	<?php wp_nav_menu( array(
 		'theme-location'	=> 'menu-2',
 		'menu_class'	=> 'nav',
-		'items_wrap'	=> '<li class="nav-item"'
 	));
 	?>
 
