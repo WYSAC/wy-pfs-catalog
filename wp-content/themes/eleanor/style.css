@@ -23,6 +23,103 @@ Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
 
 
 /* =======================
+	Structural Template Stuff
+	======================== */
+
+	/* Turn off the App-Body body background color */
+
+	body {
+		background-color: rgb(255,255,255);
+	}
+
+/* Depot Logo */
+.brand-logo svg {
+	width:32px;
+}
+
+/* Depot logo on Depot landing page */
+
+.depot-brand-logo svg {
+	width:56px;
+}
+
+.depot-brand-logo svg,
+.depot-brand-logo svg path {
+	fill:#fff;
+}
+
+/* Adjust the Jumbo Tool Name Link */
+
+.jumbotron-tool-name {
+	margin-top:66.75px;
+}
+
+.jumbotron h1.depot-tool-name a:link,
+.jumbotron h1.depot-tool-name a:hover,
+.jumbotron h1.depot-tool-name a:visited {
+	color:rgb(255,255,255);
+	text-decoration: none;
+}
+
+
+	/* =======================
+		Menu Customizations
+		======================== */
+
+/* Top Menu (Primary Nav) in jumbotron */
+
+.top-menu-nav ul.nav.nav-pills li.nav-item {
+	padding:0 15px;
+}
+
+.top-menu-nav ul.nav.nav-pills li.nav-item a {
+	color:rgb(255,255,255);
+}
+
+.top-menu-nav ul.nav.nav-pills li.nav-item .sub-menu.dropdown-menu a {
+	color: rgb(45, 45, 45)
+}
+
+.top-menu-nav .nav-pills .nav-link.active,
+.top-menu-nav .nav-pills .show>.nav-link {
+	background:rgba(255,255,255,0);
+	border:solid thin rgba(255,255,255);
+}
+
+.top-menu-nav .nav-pills a.nav-link:hover {
+	background:rgba(255,255,255,0.2);
+}
+
+
+/* =======================
+	Depot Page
+	======================== */
+
+	article#post-96 h1 {
+		display: none;
+	}
+
+	div.depot-section-unlocked {
+		background-color: #20c997;
+	}
+
+		div.depot-section-unlocked:first-of-type {
+			background-color: #17a2b8;
+		}
+
+.depot-home-header {
+	background: url("images/rawpixel-679097-unsplash.jpg" );
+	background-size:cover;
+}
+
+.depot-home-footer section,
+.depot-home-features {
+	min-height:250px;
+}
+
+
+
+/* =======================
 	Strategy Post Type Customizations
 	======================== */
 

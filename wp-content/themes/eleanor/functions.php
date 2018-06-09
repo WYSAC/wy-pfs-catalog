@@ -45,7 +45,8 @@ if ( ! function_exists( 'eleanor_setup' ) ) :
 		// This theme uses wp_nav_menu() in one location.
 		register_nav_menus( array(
 			'menu-1' => esc_html__( 'Primary', 'eleanor' ),
-			'menu-2' => esc_html__( 'Sidebar Navigation', 'eleanor')
+			'menu-2' => esc_html__( 'Sidebar Navigation', 'eleanor'),
+			'menu-3' => esc_html__( 'Footer Navigation', 'eleanor')
 		) );
 
 		/*
@@ -111,6 +112,24 @@ function eleanor_widgets_init() {
 		'before_title'  => '<h2 class="widget-title">',
 		'after_title'   => '</h2>',
 	) );
+	register_sidebar( array(
+		'name'          => esc_html__( 'Depot Landing Page:  Footer Left', 'eleanor' ),
+		'id'            => 'depot-footer-1',
+		'description'   => esc_html__( 'These widgets appear in the left coloumn of the footer on the Depot landing page', 'eleanor' ),
+		'before_widget' => '<section id="%1$s" class="widget %2$s col-md pt-4">',
+		'after_widget'  => '</section>',
+		'before_title'  => '<h3 class="widget-title">',
+		'after_title'   => '</h3>',
+	) );
+	register_sidebar( array(
+		'name'          => esc_html__( 'Depot Landing Page:  Footer Right', 'eleanor' ),
+		'id'            => 'depot-footer-2',
+		'description'   => esc_html__( 'These widgets appear in the right coloumn of the footer on the Depot landing page', 'eleanor' ),
+		'before_widget' => '<section id="%1$s" class="widget %2$s col-md pt-4">',
+		'after_widget'  => '</section>',
+		'before_title'  => '<h3 class="widget-title">',
+		'after_title'   => '</h3>',
+	) );
 }
 add_action( 'widgets_init', 'eleanor_widgets_init' );
 
@@ -123,7 +142,7 @@ add_action( 'widgets_init', 'eleanor_widgets_init' );
 
  function eleanor_theme_styles() {
  	//Bootstrap 4 CDN
- 	wp_enqueue_style('bootstrap_css', 'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css');
+ 	wp_enqueue_style('bootstrap_css', 'https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css');
  	//Theme css
  	wp_enqueue_style('main_css', get_template_directory_uri() . '/style.css' );
 	//Core UI
@@ -143,11 +162,11 @@ add_action( 'widgets_init', 'eleanor_widgets_init' );
 	//popper
 	wp_enqueue_script('popper_js', 'https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js', array('jquery'), null, true);
  	//Bootstrap 4 CDN
- 	wp_enqueue_script('bootstrap_js', 'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js', array( 'jquery' ), null, true);
+ 	wp_enqueue_script('bootstrap_js', 'https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js', array( 'jquery' ), null, true);
 	//coreui app.js
 	wp_enqueue_script('coreui_app_js', get_template_directory_uri() . '/js/app.js', array('jquery'), null, true);
 
-	//Bootstrap 4 CDN
+	// Datatables
 	wp_enqueue_script('datatables_js', 'https://cdn.datatables.net/v/bs4/dt-1.10.16/fh-3.1.3/datatables.min.js', array( 'jquery' ), null, true);
 	//dataTables_archive.js
 	wp_enqueue_script('dataTablesArchive_js', get_template_directory_uri() . '/js/dataTables_archive.js', array('jquery'), null, true);
@@ -206,7 +225,9 @@ require get_template_directory() . '/inc/bootstrap-navwalker.php';
 
 register_nav_menus( array(
 	'menu-1'	=> esc_html__( 'Primary', 'eleanor'),
-	'menu-2' => esc_html__( 'Sidebar Navigation', 'eleanor')
+	'menu-2' => esc_html__( 'Sidebar Navigation', 'eleanor'),
+	'menu-3' => esc_html__('Footer Navigation', 'eleanor'),
+	'menu-4' => esc_html__('Depot Navigation', 'eleanor')
 ));
 
 /**
@@ -231,3 +252,11 @@ function et_excerpt_more($more) {
     return '<div class="view-full-post"><a href="'. get_permalink($post->ID) . '" class="view-full-post-btn">View Strategy</a></div>';
 }
 add_filter('excerpt_more', 'et_excerpt_more');
+
+/* Get an inline svg from the Images folder */
+
+function inline_svg($name) {
+	$file = get_template_directory();
+	$file .= "/images/" .$name .".svg";
+	include($file);
+}

@@ -9,8 +9,8 @@
 
 get_header(); ?>
 
-	<div id="primary" class="content-area main col-md-8">
-		<main id="main" class="site-main main">
+<div id="primary" class="content-area">
+	<main id="main" class="site-main main">
 
 		<?php
 		while ( have_posts() ) : the_post();
@@ -26,10 +26,9 @@ get_header(); ?>
 
 		endwhile; // End of the loop.
 		?>
-
-		</main><!-- #main -->
-	</div><!-- #primary -->
+</main><!--#main.main-->
+</div><!--#primary-->
 
 <?php
-get_sidebar();
+get_sidebar(); //dynamic sidebar containing the secondary nav
 get_footer();

@@ -20,39 +20,54 @@
 	<?php wp_head(); ?>
 </head>
 
-<body <?php body_class('app footer-fixed header-fixed'); ?>>
-	<div id="page" class="site">
+<body <?php body_class('app header-fixed footer-fixed'); ?>>
+	<div id="page" class="site ">
 		<a class="skip-link screen-reader-text sr-only" href="#content"><?php esc_html_e( 'Skip to content', 'eleanor' ); ?></a>
-
-		<header id="masthead" class="app-header">
-
-			<nav class="navbar navbar-expand-lg navbar-light bg-light ">
-				<!--Branding Name for Tiny Screens-->
-				<a href="<?php bloginfo('url'); ?>" title="<?php bloginfo('name'); ?>" class="navbar-brand d-inline d-md-none d-lg-done d-xl-none">WYPFSABC</a>
-				<!--Branding Name for Regular -> XL Screens-->
-				<a href="<?php bloginfo('url'); ?>" title="<?php bloginfo('name'); ?>" class="navbar-brand d-none d-md-inline d-lg-inline d-xl-inline"><?php bloginfo('name'); ?></a>
-				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-content" aria-controls="navbar-content" aria-expanded="false" aria-label="<?php esc_html_e( 'Toggle Navigation', 'eleanor' ); ?>">
+		<!-- =======================
+		Header
+		======================== -->
+		<header id="masthead" class="">
+			<!-- =======================
+			Top Menu Navigation
+			======================== -->
+			<nav class="navbar navbar-expand-sm fixed-top navbar-light bg-white border-bottom">
+				<!-- =======================
+				Branding & Logo
+				======================== -->
+				<a href="#" class="navbar-brand brand-logo" title="Wyoming Prevention Depot"><?php inline_svg('depot-logo');?> </a><a class="navbar-brand" href="#" >Wyoming Prevention Depot</a>
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#depotNavBar" aria-controls="depotNavBar" aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span>
 				</button>
-
-				<div class="collapse navbar-collapse" id="navbar-content">
-					<?php
-					wp_nav_menu( array(
-						'theme_location' => 'menu-1',
-						'menu_id'        => 'primary-menu',
-						'container'      => false,
-						'depth'          => 2,
-						'menu_class'     => 'navbar-nav mr-auto',
+				<!-- =======================
+				Depot Nav !! Dynamic Menu !!
+				======================== -->
+				<div class="collapse navbar-collapse justify-content-end" id="depotNavBar">
+					<?php wp_nav_menu(array(
+						'theme_location' => 'menu-4',
 						'walker'         => new Bootstrap_NavWalker(),
-						'fallback_cb'    => 'Bootstrap_NavWalker::fallback',
-					) );
-					?>
+						'menu_class' => 'navbar-nav mr-auto'
+					))?>
 				</div>
 			</nav>
 		</header><!-- #masthead -->
-
-		<div id="content" class="site-content container-fluid app-body">
-			<?php get_sidebar('secondary-nav')?>
-						<main class="main">
-							<div class="card">
-								<div class="row card-body">
+		<!-- =======================
+		JumboTron / Tool Name
+		======================== -->
+		<div class="jumbotron jumbotron-fluid bg-success jumbotron-tool-name">
+			<div class="container">
+				<h1 class="display-4 text-center depot-tool-name"><a href="<?php echo site_url(); ?>"> <?php bloginfo('name'); ?></a></h1>
+				<p class="lead text-center"><?php bloginfo('description');?></p>
+				<!-- =======================
+				Tool Nav !! Dynamic Menu !!
+				======================== -->
+				<div class="top-menu-nav d-flex justify-content-center">
+					<?php wp_nav_menu(array (
+						'theme_location' => 'menu-1',
+						'menu_id'				=> 'primary-menu',
+						'menu_class'		=> 'nav nav-pills',
+						'walker'         => new Bootstrap_NavWalker(),
+					)) ?>
+				</div>
+			</div>
+		</div><!--.jumbotron-->
+		<div id="content" class="site-content app-body container-fluid">

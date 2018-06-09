@@ -11,23 +11,23 @@
 
 ?>
 
-	</div><!-- #content -->
-</div><!--card-body-->
-</div><!--card-->
-</main><!--.row-->
-
 	<footer id="colophon" class="site-footer app-footer">
+		<!-- =======================
+					Copyright
+					======================== -->
 		<div class="site-info">
-			<a href="<?php echo esc_url( __( 'https://wordpress.org/', 'eleanor' ) ); ?>"><?php
-				/* translators: %s: CMS name, i.e. WordPress. */
-				printf( esc_html__( 'Proudly powered by %s', 'eleanor' ), 'WordPress' );
-			?></a>
-			<span class="sep"> | </span>
-			<?php
-				/* translators: 1: Theme name, 2: Theme author. */
-				printf( esc_html__( 'Theme: %1$s by %2$s.', 'eleanor' ), 'eleanor', '<a href="http://uwyo.edu/wysac">WYSAC</a>' );
-			?>
+			&copy; <?php echo date('Y'); ?> <a href="<?php echo esc_url( __( 'https://wysac.uwyo.edu', 'eleanor' ) ); ?>"> Wyoming Survey & Analysis Center at the University of Wyoming</a>
 		</div><!-- .site-info -->
+		<!-- =======================
+					Footer Nav !! Dyanmic Menu !!
+					======================== -->
+		<div class="col mr-auto">
+			<?php wp_nav_menu(array (
+				'menu' => 'Footer Navigation',
+				'menu_class' => 'nav justify-content-end',
+				'theme_location' => 'menu-3',
+			)); ?>
+		</div>
 	</footer><!-- #colophon -->
 </div><!-- #page -->
 
