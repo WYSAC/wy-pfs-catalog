@@ -30,7 +30,7 @@
 			<!-- =======================
 			Top Menu Navigation
 			======================== -->
-			<nav class="navbar navbar-expand-sm fixed-top navbar-light bg-white border-bottom">
+			<nav class="navbar navbar-expand-sm navbar-light bg-white border-bottom">
 				<!-- =======================
 				Branding & Logo
 				======================== -->
@@ -56,7 +56,7 @@
 		<div class="jumbotron jumbotron-fluid bg-success jumbotron-tool-name">
 			<div class="container">
 				<h1 class="display-4 text-center depot-tool-name"><a href="<?php echo site_url(); ?>"> <?php bloginfo('name'); ?></a></h1>
-				<p class="lead text-center"><?php bloginfo('description');?></p>
+				<p class="lead text-center font-weight-bold"><?php bloginfo('description');?></p>
 				<!-- =======================
 				Tool Nav !! Dynamic Menu !!
 				======================== -->

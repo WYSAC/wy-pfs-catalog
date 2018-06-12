@@ -20,6 +20,14 @@ Normalizing styles have been helped along thanks to the fine work of
 Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
 */
 
+/* =======================
+	Typography
+	======================== */
+*, html, body {
+	font-family: 'Roboto', Helvetica, Arial, sans-serif;
+	font-size:1rem;
+}
+
 
 
 /* =======================
@@ -50,9 +58,9 @@ Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
 
 /* Adjust the Jumbo Tool Name Link */
 
-.jumbotron-tool-name {
+/* .jumbotron-tool-name {
 	margin-top:66.75px;
-}
+}*/
 
 .jumbotron h1.depot-tool-name a:link,
 .jumbotron h1.depot-tool-name a:hover,
