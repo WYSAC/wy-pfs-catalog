@@ -39,9 +39,13 @@ get_header(); ?>
 			while ( have_posts() ) : the_post();
 			?>
 			<tr>
-				<th scope="col">
-					<i class="fas fa-circle" style="color:#<?php the_field('indicator'); ?>;"></i>
-				</th>
+				<td scope="col">
+					<?php
+					$effective = get_field('indicator'); ?>
+					<i class="fas fa-circle" style="color:#<?php echo $effective->slug; ?>;" title="<?php echo $effective->name;?>"></i>
+					<span class="sr-only"><?php echo $effective->name ?></span>
+				</span>
+			</td>
 				<td scope="col"><a href="<?php the_permalink();?>"><?php the_title(); ?></a></td>
 				<td scope="col"><?php the_terms( $post->ID, 'causal-domain', 'Causal Domains: ', ', '); ?><br/><?php the_terms( $post->ID, 'tobacco-goals', 'Tobacco Goals: ', ', '); ?></td>
 				<td scope="col">

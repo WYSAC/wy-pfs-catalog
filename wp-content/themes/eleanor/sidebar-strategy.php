@@ -22,39 +22,40 @@
         =========================== -->
         <div class="col-12 text-center mb-3">
           <?php
-          $color = get_field('indicator');
+          $effective = get_field('indicator');
           $strength = get_field('evidence_strength');
 
-            switch($strength) {
-              /* ======= No Evidence ======= */
-              case 'no_evidence_found':
-              echo '<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 512 512"><title>No evidence found</title><desc>Harvey Ball icon indicating evidence strength</desc><g fill="none"><g style="stroke-width:8;stroke:#' . $color . '"><circle cx="256.5" cy="256.5" r="247.5"/></g></g></svg>';
-              break;
-              /* ======= Grey Lit ======= */
-              case 'grey_lit':
-              echo '<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 512 512"><title>Grey literature</title><desc>Harvey Ball icon indicating evidence strength</desc><g fill="none"><g style="stroke-width:8;stroke:#' . $color . '"><path d="M255.5 257.7L18.7 180.7C52.7 76.2 145.5 8.7 255.5 8.7L255.5 257.7Z"/><path d="M255.5 257.7L109.1 459.1C20.2 394.4-15.3 285.3 18.7 180.7L255.5 257.7Z"/><path d="M255.5 257.7L401.8 459.1C312.8 523.7 198.1 523.7 109.1 459.1L255.5 257.7Z"/><path d="M255.5 257.7L492.2 180.7C526.2 285.3 490.7 394.4 401.8 459.1L255.5 257.7Z"/><path d="M255.5 257.7L255.5 8.7C365.4 8.7 458.2 76.2 492.2 180.7L255.5 257.7Z" fill="#' . $color . '"/></g></g></svg>';
-              break;
-              /* ======= Single Publication ======= */
-              case 'single_pub':
-              echo '<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 512 512"><title>Single published study</title><desc>Harvey Ball icon indicating evidence strength</desc><g fill="none"><g style="stroke-width:8;stroke:#' . $color . '"><path d="M255.5 257.7L18.7 180.7C52.7 76.2 145.5 8.7 255.5 8.7L255.5 257.7Z"/><path d="M255.5 257.7L109.1 459.1C20.2 394.4-15.3 285.3 18.7 180.7L255.5 257.7Z"/><path d="M255.5 257.7L401.8 459.1C312.8 523.7 198.1 523.7 109.1 459.1L255.5 257.7Z"/><path d="M255.5 257.7L492.2 180.7C526.2 285.3 490.7 394.4 401.8 459.1L255.5 257.7ZM255.5 257.7L255.5 8.7C365.4 8.7 458.2 76.2 492.2 180.7L255.5 257.7Z" fill="#' . $color . '"/></g></g></svg>';
-              break;
-              /* ======= Numerous Publications ======= */
-              case 'numerous_pub':
-              echo '<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 512 512"><title>Numerous published studies</title><desc>Harvey Ball icon indicating evidence strength</desc><g fill="none"><g style="stroke-width:8;stroke:#' . $color . '"><path d="M255.5 257.7L18.7 180.7C52.7 76.2 145.5 8.7 255.5 8.7L255.5 257.7Z"/><path d="M255.5 257.7L109.1 459.1C20.2 394.4-15.3 285.3 18.7 180.7L255.5 257.7Z"/><path d="M255.5 257.7L401.8 459.1C312.8 523.7 198.1 523.7 109.1 459.1L255.5 257.7ZM255.5 257.7L492.2 180.7C526.2 285.3 490.7 394.4 401.8 459.1L255.5 257.7ZM255.5 257.7L255.5 8.7C365.4 8.7 458.2 76.2 492.2 180.7L255.5 257.7Z" fill="#' . $color . '"/></g></g></svg>';
-              break;
-              /* ======= Systematic Review / Meta  ======= */
-              case 'systematic_review':
-              echo '<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 512 512"><title>Systematic review, meta-analysis</title><desc>Harvey Ball icon indicating evidence strength</desc><g fill="none"><g style="stroke-width:8;stroke:#' . $color . '"><path d="M255.5 257.7L18.7 180.7C52.7 76.2 145.5 8.7 255.5 8.7L255.5 257.7Z"/><path d="M255.5 257.7L109.1 459.1C20.2 394.4-15.3 285.3 18.7 180.7L255.5 257.7ZM255.5 257.7L401.8 459.1C312.8 523.7 198.1 523.7 109.1 459.1L255.5 257.7ZM255.5 257.7L492.2 180.7C526.2 285.3 490.7 394.4 401.8 459.1L255.5 257.7ZM255.5 257.7L255.5 8.7C365.4 8.7 458.2 76.2 492.2 180.7L255.5 257.7Z" fill="#' . $color . '"/></g></g></svg>';
-              break;
-              /* ======= Cochrane, Community Guide, NREPP ======= */
-              case 'cochrane_review':
-              echo '<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 512 512"><title>Cochrane Review, Community Guide, NREPP</title><desc>Harvey Ball icon indicating evidence strength</desc><g fill="none"><g style="stroke-width:8;stroke:#' . $color . '"><circle cx="256.5" cy="256.5" r="247.5" fill="#' . $color . '"/></g></g></svg>';
-              break;
-              /* ======= Default / No Icon ======= */
-              default:
-              echo "No indicator";
-              break;
-            } ?>
+          switch($strength->slug) {
+            /* ======= No Evidence ======= */
+            case 'no_evidence_found':
+            echo '<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 512 512"><title>No evidence found</title><desc>Harvey Ball icon indicating evidence strength</desc><g fill="none"><g style="stroke-width:8;stroke:#' . $effective->slug . '"><circle cx="256.5" cy="256.5" r="247.5"/></g></g></svg>';
+            break;
+            /* ======= Grey Lit ======= */
+            case 'grey_lit':
+            echo '<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 512 512"><title>Grey literature</title><desc>Harvey Ball icon indicating evidence strength</desc><g fill="none"><g style="stroke-width:8;stroke:#' . $effective->slug . '"><path d="M255.5 257.7L18.7 180.7C52.7 76.2 145.5 8.7 255.5 8.7L255.5 257.7Z"/><path d="M255.5 257.7L109.1 459.1C20.2 394.4-15.3 285.3 18.7 180.7L255.5 257.7Z"/><path d="M255.5 257.7L401.8 459.1C312.8 523.7 198.1 523.7 109.1 459.1L255.5 257.7Z"/><path d="M255.5 257.7L492.2 180.7C526.2 285.3 490.7 394.4 401.8 459.1L255.5 257.7Z"/><path d="M255.5 257.7L255.5 8.7C365.4 8.7 458.2 76.2 492.2 180.7L255.5 257.7Z" fill="#' . $effective->slug . '"/></g></g></svg>';
+            break;
+            /* ======= Single Publication ======= */
+            case 'single_pub':
+            echo '<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 512 512"><title>Single published study</title><desc>Harvey Ball icon indicating evidence strength</desc><g fill="none"><g style="stroke-width:8;stroke:#' . $effective->slug . '"><path d="M255.5 257.7L18.7 180.7C52.7 76.2 145.5 8.7 255.5 8.7L255.5 257.7Z"/><path d="M255.5 257.7L109.1 459.1C20.2 394.4-15.3 285.3 18.7 180.7L255.5 257.7Z"/><path d="M255.5 257.7L401.8 459.1C312.8 523.7 198.1 523.7 109.1 459.1L255.5 257.7Z"/><path d="M255.5 257.7L492.2 180.7C526.2 285.3 490.7 394.4 401.8 459.1L255.5 257.7ZM255.5 257.7L255.5 8.7C365.4 8.7 458.2 76.2 492.2 180.7L255.5 257.7Z" fill="#' . $effective->slug . '"/></g></g></svg>';
+            break;
+            /* ======= Numerous Publications ======= */
+            case 'numerous_pub':
+            echo '<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 512 512"><title>Numerous published studies</title><desc>Harvey Ball icon indicating evidence strength</desc><g fill="none"><g style="stroke-width:8;stroke:#' . $effective->slug . '"><path d="M255.5 257.7L18.7 180.7C52.7 76.2 145.5 8.7 255.5 8.7L255.5 257.7Z"/><path d="M255.5 257.7L109.1 459.1C20.2 394.4-15.3 285.3 18.7 180.7L255.5 257.7Z"/><path d="M255.5 257.7L401.8 459.1C312.8 523.7 198.1 523.7 109.1 459.1L255.5 257.7ZM255.5 257.7L492.2 180.7C526.2 285.3 490.7 394.4 401.8 459.1L255.5 257.7ZM255.5 257.7L255.5 8.7C365.4 8.7 458.2 76.2 492.2 180.7L255.5 257.7Z" fill="#' . $effective->slug . '"/></g></g></svg>';
+            break;
+            /* ======= Systematic Review / Meta  ======= */
+            case 'systematic_review':
+            echo '<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 512 512"><title>Systematic review, meta-analysis</title><desc>Harvey Ball icon indicating evidence strength</desc><g fill="none"><g style="stroke-width:8;stroke:#' . $effective->slug . '"><path d="M255.5 257.7L18.7 180.7C52.7 76.2 145.5 8.7 255.5 8.7L255.5 257.7Z"/><path d="M255.5 257.7L109.1 459.1C20.2 394.4-15.3 285.3 18.7 180.7L255.5 257.7ZM255.5 257.7L401.8 459.1C312.8 523.7 198.1 523.7 109.1 459.1L255.5 257.7ZM255.5 257.7L492.2 180.7C526.2 285.3 490.7 394.4 401.8 459.1L255.5 257.7ZM255.5 257.7L255.5 8.7C365.4 8.7 458.2 76.2 492.2 180.7L255.5 257.7Z" fill="#' . $effective->slug . '"/></g></g></svg>';
+            break;
+            /* ======= Cochrane, Community Guide, NREPP ======= */
+            case 'cochrane_review':
+            echo '<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 512 512"><title>Cochrane Review, Community Guide, NREPP</title><desc>Harvey Ball icon indicating evidence strength</desc><g fill="none"><g style="stroke-width:8;stroke:#' . $effective->slug . '"><circle cx="256.5" cy="256.5" r="247.5" fill="#' . $effective->slug . '"/></g></g></svg>';
+            break;
+            /* ======= Default / No Icon ======= */
+            default:
+            echo "No indicator";
+            break;
+          } ?>
+
         </div>
         <!-- ===========================
         Harvey Ball - Labels
@@ -67,47 +68,18 @@
                 <h4 class="strategy-sidebar-title">Effectiveness</h4>
                 <p class="label-indicator font-italic">
                   <?php
-                  switch($label_indicator) {
-                    case 'f86c6b'; //red
-                    echo 'Not Effective';
-                    break;
-                    case 'ffc107'; //yellow
-                    echo 'Varied Evidence of Effectiveness';
-                    break;
-                    case '4dbd74'; //green
-                    echo 'Effective';
-                    break;
-                    default:
-                    echo 'No Measure of Strength';
-                    break;
-                  } ?></p>
+                  if ($label_indicator):
+                    echo $label_indicator->name;
+                  endif;
+                  ?></p>
                 <!-- ======= Strength - Slices ======= -->
                 <h4 class="strategy-sidebar-title">Strength of Evidence</h4>
                 <p class="label-strength font-italic">
                   <?php
-                  switch($label_strength) {
-                    case 'no_evidence_found';
-                    echo 'No Evidence Found';
-                    break;
-                    case 'grey_lit';
-                    echo 'Grey Literature';
-                    break;
-                    case 'single_pub';
-                    echo 'Single Published Study';
-                    break;
-                    case 'numerous_pub';
-                    echo 'Numerous Published Studies';
-                    break;
-                    case 'systematic_review';
-                    echo 'Systematic Review, Meta Analysis';
-                    break;
-                    case 'cochrane_review';
-                    echo 'Cochrane Review, Community Guide, or NREPP';
-                    break;
-                    default:
-                    echo 'No Indicator';
-                    break;
-                  } ?>
+                  if ($label_strength):
+                    echo $label_strength->name;
+                  endif;
+                  ?>
                 </p>
         </div>
       </div>

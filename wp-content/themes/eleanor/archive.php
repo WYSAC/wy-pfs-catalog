@@ -16,7 +16,7 @@ get_header(); ?>
 
 							<header class="page-header">
 								<?php
-								the_archive_title( '<h1 class="page-title display-4">', '</h1>' );
+								the_archive_title( '<h1 class="page-title display-4 archive">', '</h1>' );
 								the_archive_description( '<div class="archive-description lead">', '</div>' );
 								?>
 							</header><!-- .page-header -->

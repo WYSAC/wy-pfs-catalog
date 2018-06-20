@@ -40,23 +40,11 @@ get_header(); ?>
 			?>
 			<tr>
 				<td scope="col">
-					<i class="fas fa-circle" style="color:#<?php the_field('indicator'); ?>;"></i>
-					<span class=""><?php
-					$label_indicator = get_field('indicator');
-					switch($label_indicator) {
-						case 'f86c6b'; //red
-						echo 'Not Effective';
-						break;
-						case 'ffc107'; //yellow
-						echo 'Varied Evidence of Effectiveness';
-						break;
-						case '4dbd74'; //green
-						echo 'Effective';
-						break;
-						default:
-						echo 'No Measure of Strength';
-						break;
-					} ?></span>
+					<?php
+					$effective = get_field('indicator'); ?>
+					<i class="fas fa-circle" style="color:#<?php echo $effective->slug; ?>;" title="<?php echo $effective->name;?>"></i>
+					<span class="sr-only"><?php echo $effective->name ?></span>
+				</span>
 				</td>
 				<td scope="col"><a href="<?php the_permalink();?>"><?php the_title(); ?></a></td>
 				<td scope="col"><?php the_terms( $post->ID, 'causal-domain', 'Causal Domains: ', ', '); ?><br/><?php the_terms( $post->ID, 'tobacco-goals', 'Tobacco Goals: ', ', '); ?></td>

@@ -54,7 +54,7 @@ function custom_post_type() {
         'add_new'             => __( 'Add New', 'eleanor' ),
         'edit_item'           => __( 'Edit Strategy', 'eleanor' ),
         'update_item'         => __( 'Update Strategy', 'eleanor' ),
-        'search_items'        => __( 'Search Strategy', 'eleanor' ),
+        'search_items'        => __( 'Search Strategies', 'eleanor' ),
         'not_found'           => __( 'Not Found', 'eleanor' ),
         'not_found_in_trash'  => __( 'Not found in Trash', 'eleanor' ),
     );
@@ -191,6 +191,92 @@ function custom_tax_goal() {
 add_action( 'init', 'custom_tax_goal', 0 );
 
 }
+
+/*  CAUSAL DOMAIN   */
+
+// Register Effectiveness Taxonomy
+if ( ! function_exists( 'custom_strategy_effectiveness' ) ) {
+
+function custom_strategy_effectiveness() {
+
+	$labels = array(
+		'name'                       => _x( 'Strategy Effectiveness Indicators', 'Taxonomy General Name', 'text-domain' ),
+		'singular_name'              => _x( 'Strategy Effectiveness Indicator', 'Taxonomy Singular Name', 'text-domain' ),
+		'menu_name'                  => __( 'Strategy Effectiveness Indicators', 'text-domain' ),
+		'all_items'                  => __( 'All Strategy Effectiveness Indicators', 'text-domain' ),
+		'parent_item'                => __( 'Parent Indicator', 'text-domain' ),
+		'parent_item_colon'          => __( 'Parent Indicator:', 'text-domain' ),
+		'new_item_name'              => __( 'New Indicator Name', 'text-domain' ),
+		'add_new_item'               => __( 'Add Indicator', 'text-domain' ),
+		'edit_item'                  => __( 'Edit Indicator', 'text-domain' ),
+		'update_item'                => __( 'Update Indicator', 'text-domain' ),
+		'view_item'                  => __( 'View Indicator', 'text-domain' ),
+		'separate_items_with_commas' => __( 'Separate indicators with commas', 'text-domain' ),
+		'add_or_remove_items'        => __( 'Add or remove indicators', 'text-domain' ),
+		'choose_from_most_used'      => __( 'Choose from the most used indicators', 'text-domain' ),
+		'popular_items'              => __( 'Popular Indicators', 'text-domain' ),
+		'search_items'               => __( 'Search Indicators', 'text-domain' ),
+		'not_found'                  => __( 'Not Found', 'text-domain' ),
+		'no_terms'                   => __( 'No indicators', 'text-domain' ),
+		'items_list'                 => __( 'Indicator list', 'text-domain' ),
+		'items_list_navigation'      => __( 'Indicator list navigation', 'text-domain' ),
+	);
+	$args = array(
+		'labels'                     => $labels,
+		'hierarchical'               => false, // they behave like categories
+		'public'                     => true,
+		'show_ui'                    => true,
+		'show_admin_column'          => true,
+		'show_in_nav_menus'          => true,
+		'show_tagcloud'              => true,
+	);
+  // Register the taxonomy, based on the $args, but only for the Strategy Post Type
+	register_taxonomy( 'effectiveness-indicator', array( 'strategies' ), $args );
+
+}
+add_action( 'init', 'custom_strategy_effectiveness', 0 );
+
+}
+
+// Register Custom Taxonomy
+function custom_evidence_tax() {
+
+	$labels = array(
+		'name'                       => _x( 'Evidence', 'Taxonomy General Name', 'text_domain' ),
+		'singular_name'              => _x( 'Evidence', 'Taxonomy Singular Name', 'text_domain' ),
+		'menu_name'                  => __( 'Strength of Evidence', 'text_domain' ),
+		'all_items'                  => __( 'All Items', 'text_domain' ),
+		'parent_item'                => __( 'Parent Item', 'text_domain' ),
+		'parent_item_colon'          => __( 'Parent Item:', 'text_domain' ),
+		'new_item_name'              => __( 'New Item Name', 'text_domain' ),
+		'add_new_item'               => __( 'Add New Item', 'text_domain' ),
+		'edit_item'                  => __( 'Edit Item', 'text_domain' ),
+		'update_item'                => __( 'Update Item', 'text_domain' ),
+		'view_item'                  => __( 'View Item', 'text_domain' ),
+		'separate_items_with_commas' => __( 'Separate items with commas', 'text_domain' ),
+		'add_or_remove_items'        => __( 'Add or remove items', 'text_domain' ),
+		'choose_from_most_used'      => __( 'Choose from the most used', 'text_domain' ),
+		'popular_items'              => __( 'Popular Items', 'text_domain' ),
+		'search_items'               => __( 'Search Items', 'text_domain' ),
+		'not_found'                  => __( 'Not Found', 'text_domain' ),
+		'no_terms'                   => __( 'No items', 'text_domain' ),
+		'items_list'                 => __( 'Items list', 'text_domain' ),
+		'items_list_navigation'      => __( 'Items list navigation', 'text_domain' ),
+	);
+	$args = array(
+		'labels'                     => $labels,
+		'hierarchical'               => false,
+		'public'                     => true,
+		'show_ui'                    => true,
+		'show_admin_column'          => true,
+		'show_in_nav_menus'          => true,
+		'show_tagcloud'              => true,
+	);
+	register_taxonomy( 'evidence', array( 'strategies' ), $args );
+
+}
+add_action( 'init', 'custom_evidence_tax', 0 );
+
 
 
 ?>
