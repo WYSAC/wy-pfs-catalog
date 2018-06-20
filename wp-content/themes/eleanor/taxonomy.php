@@ -10,7 +10,7 @@
 get_header(); ?>
 
 <div id="primary" class="content-area col">
-	<main id="main" class="site-main main">
+	<main id="main" class="site-main main mb-5">
 
 		<?php
 		if ( have_posts() ) : ?>
@@ -43,7 +43,7 @@ get_header(); ?>
 					<i class="fas fa-circle" style="color:#<?php the_field('indicator'); ?>;"></i>
 				</th>
 				<td scope="col"><a href="<?php the_permalink();?>"><?php the_title(); ?></a></td>
-				<td scope="col"><?php the_terms( $post->ID, 'causal-domain', 'Causal Domains: ', '/'); ?><br/><?php the_terms( $post->ID, 'tobacco-goals', 'Tobacco Goals: ', '/'); ?></td>
+				<td scope="col"><?php the_terms( $post->ID, 'causal-domain', 'Causal Domains: ', ', '); ?><br/><?php the_terms( $post->ID, 'tobacco-goals', 'Tobacco Goals: ', ', '); ?></td>
 				<td scope="col">
 					<?php
 		      if( in_array( 'tobacco', get_field('target_substances') ) )
@@ -54,7 +54,7 @@ get_header(); ?>
 		      {
 		        echo '<i class="fas fa-glass-martini" title="Alcohol"></i>';
 		      }
-		      if( in_array( 'other_drugs', get_field('target_substances') ) )
+		      if( in_array( 'other-drugs', get_field('target_substances') ) )
 		      {
 		        echo '<i class="fas fa-pills" title="Prescription and other drugs"></i>';
 		      }
@@ -74,5 +74,5 @@ get_header(); ?>
 	</div><!--#primary-->
 
 <?php
-
+get_sidebar();
 get_footer();

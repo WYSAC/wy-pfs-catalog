@@ -25,7 +25,10 @@ Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
 	======================== */
 *, html, body {
 	font-family: 'Roboto', Helvetica, Arial, sans-serif;
-	font-size:1rem;
+}
+
+p {
+	font-size:1.0rem;
 }
 
 
@@ -98,6 +101,35 @@ Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
 	background:rgba(255,255,255,0.2);
 }
 
+/* =======================
+	Dynamic Sidebar
+	======================== */
+
+#secondary section.widget {
+		margin-top:25px;
+	}
+
+#secondary section.widget_search {
+	margin-top:0;
+}
+
+#secondary ul#menu-secondary-left-navigation {
+	padding-left:0;
+	list-style: none;
+}
+
+#secondary ul#menu-secondary-left-navigation ul.sub-menu {
+	padding:0 0;
+	margin: 0 0;
+	list-style: none;
+}
+
+#secondary #menu-secondary-left-navigation li {
+	padding: 0 0;
+	margin: 0 0;
+}
+
+
 
 /* =======================
 	Depot Page
@@ -133,11 +165,20 @@ Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
 
 	/* ========   SIDEBAR ========== */
 
-	.target_sub_icon {
+	.target-sub-icon {
 		font-size: 3em;
 		text-align: center;
+		color:rgb(99, 99, 99);
 	}
 
-	.target_sub_icon i:not(:last-child) {
+	.target-sub-icon i:not(:last-child) {
 		padding-right:15px;
+	}
+
+	.label-strength, .label-indicator, .label-wyoming, .label-strategy-tax {
+		font-size:95%;
+	}
+
+	.strategy-sidebar-title {
+		font-size:1.15em;
 	}

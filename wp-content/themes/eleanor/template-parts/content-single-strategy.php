@@ -23,21 +23,12 @@
     <?php
     if ( is_singular() ) :
       ?>
-      <!--Favorite Button-->
-      <?php the_favorites_button();?>
+<?php wpfp_link() ?>
       <?php the_title( '<h1 class="entry-title display-4">', '</h1>' );
       else :
         the_title( '<h2 class="entry-title"><a href="' . esc_url( get_permalink() ) . '" rel="bookmark">', '</a></h2>' );
       endif;
-
-      if ( 'strategies' === get_post_type() ) : ?>
-      <div class="entry-meta">
-        <!--Updated date & time -->
-        <small>Updated: <?php the_modified_time('F j, Y') ?> at <?php the_modified_time('g:i a');?></small>
-        <p class="font-italic"><small>Also known as... <?php the_field('other_names')?></small></p>
-      </div><!-- .entry-meta -->
-      <?php
-    endif; ?>
+      ?>
   </header><!-- .entry-header -->
   <!-- ===========================
   ENTRY Content
@@ -49,6 +40,8 @@
     =========================== -->
     <h2>Description of Strategy</h2>
     <?php the_content(); ?>
+    <p><small><span class="text-uppercase">Also known as<br/>
+      <?php the_field('other_names')?></small></p>
     <!-- ===========================
         Content / Discussion
     =========================== -->

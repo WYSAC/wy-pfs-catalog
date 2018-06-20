@@ -16,6 +16,7 @@
 *   - Custom Taxonomies
 *     -- Causal domains
 *     -- Tobacco Goals
+*   - Archive function for ACF-controled meta for Strategies
 *
 *   =====================================================
 *     GENERAL NOTES ABOUT FEATURES
@@ -190,8 +191,6 @@ function custom_tax_goal() {
 add_action( 'init', 'custom_tax_goal', 0 );
 
 }
-
-
 
 
 ?>

@@ -169,7 +169,7 @@ add_action( 'widgets_init', 'eleanor_widgets_init' );
 	// Datatables
 	wp_enqueue_script('datatables_js', 'https://cdn.datatables.net/v/bs4/dt-1.10.16/fh-3.1.3/datatables.min.js', array( 'jquery' ), null, true);
 	//dataTables_archive.js
-	wp_enqueue_script('dataTablesArchive_js', get_template_directory_uri() . '/js/dataTables_archive.js', array('jquery'), null, true);
+	wp_enqueue_script('dataTablesArchive_js', get_template_directory_uri() . '/js/datatables_archive.js', array('jquery'), null, true);
 
  }
  add_action('wp_enqueue_scripts', 'eleanor_theme_scripts');
@@ -260,3 +260,62 @@ function inline_svg($name) {
 	$file .= "/images/" .$name .".svg";
 	include($file);
 }
+
+/* Strategies Archive Filters
+*
+*		- Indicator of Effectiveness
+*		- Strength of Evidence
+*		- Target Substance
+*/
+
+// array of filters (field key => field name)
+$GLOBALS['my_query_filters'] = array(
+	'field_1'	=> 'evidence_strength',
+	'field_2'	=> 'indicator',
+	'field_3' => 'target_substances',
+	'field_4' => 'used_in_wyoming'
+);
+// action
+add_action('pre_get_posts', 'my_pre_get_posts', 10, 1);
+
+function my_pre_get_posts( $query ) {
+
+	// bail early if is in admin
+	if( is_admin() ) return;
+
+
+	// bail early if not main query
+	// - allows custom code / plugins to continue working
+	if( !$query->is_main_query() ) return;
+
+
+	// get meta query
+	$meta_query = $query->get('meta_query');
+
+
+	// loop over filters
+	foreach( $GLOBALS['my_query_filters'] as $key => $name ) {
+
+		// continue if not found in url
+		if( empty($_GET[ $name ]) ) {
+
+			continue;
+
+		}
+		// get the value for this filter
+		// eg: http://www.website.com/events?city=melbourne,sydney
+		$value = explode(',', $_GET[ $name ]);
+		// append meta query
+    	$meta_query[] = array(
+            'key'		=> $name,
+            'value'		=> $value,
+            'compare'	=> 'IN',
+        );
+	}
+	// update meta query
+	$query->set('meta_query', $meta_query);
+
+}
+
+
+?>

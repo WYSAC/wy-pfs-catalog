@@ -71,3 +71,4 @@
 			</div>
 		</div><!--.jumbotron-->
 		<div id="content" class="site-content app-body container-fluid">
+			<div class="row">
