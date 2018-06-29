@@ -8,6 +8,6 @@
 
  jQuery(document).ready( function () {
     jQuery('#strategy-archive-table').DataTable( {
-      'order': [[1, 'asc']] 
+      'order': [[1, 'asc']]
     });
 } );

@@ -15,13 +15,32 @@ get_header(); ?>
 		<?php
 		if ( have_posts() ) : ?>
 
-			<header class="page-header">
+			<header class="page-header mb-4">
 				<?php
-					the_archive_title( '<h1 class="page-title display-4">', '</h1>' );
-					the_archive_description( '<div class="archive-description lead">', '</div>' );
-
-				?>
-			</header><!-- .page-header -->
+					the_archive_title( '<h1 class="page-title">', '</h1>' );
+					$term = get_term_by( 'slug', get_query_var( 'term' ), get_query_var( 'taxonomy' ) );
+					 ?>
+					<p><a href="#" class="tax-more-link text-secondary" data-toggle="modal" data-target="#archiveDescriptionModal"><i class="fas fa-info"></i>&nbsp;More about <?php echo $term->name; ?></a></p>
+					<!-- Modal -->
+					<div class="modal fade" id="archiveDescriptionModal" tabindex="-1" role="dialog" aria-labelledby="archiveDescriptionModalLabel" aria-hidden="true">
+					  <div class="modal-dialog modal-dialog-centered modal-dialog-lg" role="document">
+					    <div class="modal-content">
+					      <div class="modal-header">
+					        <h4 class="modal-title" id="archiveDescriptionModalLabel"><?php echo $term->name; ?></h4>
+					        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					          <span aria-hidden="true">&times;</span>
+					        </button>
+					      </div>
+					      <div class="modal-body">
+									<?php	the_archive_description( '<div class="archive-description ">', '</div>' ); ?>
+					      </div>
+					      <div class="modal-footer">
+					        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					      </div>
+					    </div>
+					  </div>
+					</div>
+	</header><!-- .page-header -->
 
 			<table id="strategy-archive-table" class="table table-responsive">
 				<thead>

@@ -20,7 +20,7 @@
 	<?php wp_head(); ?>
 </head>
 
-<body <?php body_class('app header-fixed footer-fixed'); ?>>
+<body <?php body_class('app header-fixed footer-fixed sidebar-show'); ?>>
 	<div id="page" class="site ">
 		<a class="skip-link screen-reader-text sr-only" href="#content"><?php esc_html_e( 'Skip to content', 'eleanor' ); ?></a>
 		<!-- =======================
@@ -53,10 +53,10 @@
 		<!-- =======================
 		JumboTron / Tool Name
 		======================== -->
-		<div class="jumbotron jumbotron-fluid bg-success jumbotron-tool-name">
+		<div class="jumbotron jumbotron-fluid bg-blue jumbotron-tool-name">
 			<div class="container">
 				<h1 class="display-4 text-center depot-tool-name"><a href="<?php echo site_url(); ?>"> <?php bloginfo('name'); ?></a></h1>
-				<p class="lead text-center font-weight-bold"><?php bloginfo('description');?></p>
+				<p class="lead text-center font-weight-bold text-white"><?php bloginfo('description');?></p>
 				<!-- =======================
 				Tool Nav !! Dynamic Menu !!
 				======================== -->
@@ -70,5 +70,5 @@
 				</div>
 			</div>
 		</div><!--.jumbotron-->
-		<div id="content" class="site-content app-body container-fluid">
+		<div id="content" class="site-content app-body container">
 			<div class="row">

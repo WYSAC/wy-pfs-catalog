@@ -31,6 +31,36 @@ p {
 	font-size:1.0rem;
 }
 
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+	font-weight: normal;
+	text-transform: capitalize;
+}
+
+.entry-title {
+	font-size: 3em;
+}
+
+.text-shadow {
+	text-shadow: 5px 5px 15px rgba(0, 0, 0, 0.85) ;
+	-webkit-text-shadow: 5px 5px 15px rgba(0, 0, 0, 0.85) ;
+	-moz-text-shadow: 5px 5px 15px rgba(0, 0, 0, 0.85) ;
+}
+
+article.page h1,
+article.page h2,
+article.page h3 {
+	margin-top: 1.15em;
+	margin-bottom: 0.5em;
+}
+
+article.page h1.entry-title {
+	margin-top: 0;
+}
+
+.edit-link {
+	display: none;
+}
+
 
 
 /* =======================
@@ -58,6 +88,7 @@ p {
 .depot-brand-logo svg path {
 	fill:#fff;
 }
+
 
 /* Adjust the Jumbo Tool Name Link */
 
@@ -101,9 +132,12 @@ p {
 	background:rgba(255,255,255,0.2);
 }
 
+
+
 /* =======================
 	Dynamic Sidebar
 	======================== */
+
 
 #secondary section.widget {
 		margin-top:25px;
@@ -113,20 +147,72 @@ p {
 	margin-top:0;
 }
 
-#secondary ul#menu-secondary-left-navigation {
-	padding-left:0;
-	list-style: none;
+/* Build the secondary nav box with links & Bookmark sidebar */
+
+#secondary section.widget_nav_menu,
+#secondary section#wpfp-users_favorites {
+	display: flex;
+	flex-direction: column;
+	padding: 0;
+	color: #fff;
+	background: rgb(46, 52, 57);
 }
 
-#secondary ul#menu-secondary-left-navigation ul.sub-menu {
+#secondary section.widget_nav_menu h2.widget-title,
+#secondary section#wpfp-users_favorites h2.widget-title {
+	font-size: 1.15em;
+	margin-top: 1em;
+	margin-bottom: 0;
+	padding: 0.5em 1em;
+}
+
+#menu-secondary-menu,
+#menu-secondary-menu ul.sub-menu,
+section#wpfp-users_favorites ul {
+	list-style: none;
 	padding:0 0;
 	margin: 0 0;
-	list-style: none;
 }
 
-#secondary #menu-secondary-left-navigation li {
-	padding: 0 0;
-	margin: 0 0;
+#menu-secondary-menu a:link,
+#menu-secondary-menu a:visited,
+#menu-secondary-menu a:hover,
+section#wpfp-users_favorites a:link{
+	color:rgb(169, 174, 177);
+	text-transform: uppercase;
+	font-weight: bold;
+	font-size: 85%;
+	text-decoration: none;
+	padding: 0.5em 1em;
+	display: block;
+}
+#menu-secondary-menu ul.sub-menu a:link,
+#menu-secondary-menu ul.sub-menu a:active,
+#menu-secondary-menu ul.sub-menu a:visited,
+section#wpfp-users_favorites a:link,
+section#wpfp-users_favorites a:active,
+section#wpfp-users_favorites a:visited {
+	color:rgb(255,255,255);
+	text-transform: none;
+	font-size:100%;
+	font-weight: normal;
+}
+
+#menu-secondary-menu ul.sub-menu a:hover,
+section#wpfp-users_favorites a:hover{
+	background-color:#2CA9D6;
+}
+
+#menu-secondary-menu li.menu-item-has-children,
+section#wpfp-users_favorites ul {
+	margin-top:1em;
+	padding-top:0.5em;
+	border-top: thin dotted rgba(88,88,88,1.0);
+}
+
+#menu-secondary-menu li.menu-item-has-children:last-child,
+section#wpfp-users_favorites ul {
+	margin-bottom: 1em;
 }
 
 
@@ -139,11 +225,11 @@ p {
 		display: none;
 	}
 
-	div.depot-section-unlocked {
+div.depot-section-unlocked {
 		background-color: #20c997;
 	}
 
-		div.depot-section-unlocked:first-of-type {
+div.depot-section-unlocked:last-of-type{
 			background-color: #17a2b8;
 		}
 
@@ -155,6 +241,15 @@ p {
 .depot-home-footer section,
 .depot-home-features {
 	min-height:250px;
+}
+
+
+/* Depot landing page site description text */
+
+.depot-site-description .textwidget p {
+	color:white;
+	font-size:2.0em;
+	font-weight: light;
 }
 
 
@@ -182,3 +277,33 @@ p {
 	.strategy-sidebar-title {
 		font-size:1.15em;
 	}
+
+	/* Remove icon used by Favorite plugin */
+
+	.wpfp-img {
+		display: none;
+	}
+
+
+	/* =======================
+Archive Pages
+		======================== */
+
+.archive-pre-title {
+	font-size:0.5em;
+	text-transform: uppercase;
+	color:rgb(99,99,99);
+	font-weight: bold;
+}
+
+/* Hide the search form on the datatable */
+#strategy-archive-table_filter {
+	display: none;
+}
+
+/* capitalize words in "more about" link on tax archives */
+
+a.tax-more-link {
+	text-transform: capitalize;
+	font-style: italic;
+}

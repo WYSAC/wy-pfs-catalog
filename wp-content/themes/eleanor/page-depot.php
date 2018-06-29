@@ -28,15 +28,18 @@ get_header('depot'); ?>
 	<!-- =======================
 	Depot Features
 	======================== -->
-	<div class="row align-items-center depot-home-features">
-		<div class="col">
-			<h2 class="text-center"><?php the_field('feature_icon_1');?><br/><?php the_field('feature_title_1');?></h2>
+	<div class="row align-items-center depot-home-features my-5 my-md-2">
+		<div class="col-12 col-md-4 my-4 my-md-2">
+			<p class="h2 text-center"><?php the_field('feature_icon_1');?></p>
+			<p class="h2 text-center"><?php the_field('feature_title_1');?></p>
 		</div>
-		<div class="col">
-			<h2 class="text-center"><?php the_field('feature_icon_2');?><br/><?php the_field('feature_title_2');?></h2>
+		<div class="col-12 col-md-4 my-4 my-md-2">
+			<p class="h2 text-center"><?php the_field('feature_icon_2');?></p>
+			<p class="h2 text-center"><?php the_field('feature_title_2');?></p>
 		</div>
-		<div class="col">
-			<h2 class="text-center"><?php the_field('feature_icon_3');?><br/><?php the_field('feature_title_3');?></h2>
+		<div class="col-12 col-md-4 my-4 my-md-2">
+			<p class="h2 text-center"><?php the_field('feature_icon_3');?></p>
+			<p class="h2 text-center"><?php the_field('feature_title_3');?></p>
 		</div>
 	</div>
 
@@ -48,18 +51,22 @@ get_header('depot'); ?>
 	<!-- =======================
 	Unlocked Tools
 	======================== -->
+	<div class="depot-home-tools-unlocked">
 
 	<?php
 	global $post; // required
 	$args_1 = array(
 		'category' => 17, // show only Depot Tools
 		'meta_key' => 'depot_tool_locked', //and those that are unlocked
-		'meta_value' => 'unlocked'
+		'meta_value' => 'unlocked',
+		'order'	=> 'ASC',
+		'orderby'	=> 'title'
 	);
 
 	$args_2 = array (
 		'category' => 17, // show only Depot Tools
-		'meta_key' => 'depot_tool_locked', //and those that are unlocked
+		'meta_key' => 'depot_tool_locked',
+		'order'	=> 'ASC', //and those that are unlocked
 		'meta_value' => 'locked'
 	);
 	$unlocked_posts = get_posts($args_1);
@@ -79,6 +86,7 @@ get_header('depot'); ?>
 		</div>
 	<?php endforeach;
 	wp_reset_postdata(); ?>
+</div>
 	<!-- =======================
 	Locked Tools
 	======================== -->

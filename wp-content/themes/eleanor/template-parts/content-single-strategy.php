@@ -23,8 +23,7 @@
     <?php
     if ( is_singular() ) :
       ?>
-<?php wpfp_link() ?>
-      <?php the_title( '<h1 class="entry-title display-4">', '</h1>' );
+      <?php the_title( '<h1 class="entry-title">', '</h1>' );
       else :
         the_title( '<h2 class="entry-title"><a href="' . esc_url( get_permalink() ) . '" rel="bookmark">', '</a></h2>' );
       endif;
@@ -34,18 +33,20 @@
   ENTRY Content
   =========================== -->
 
-  <div class="entry-content">
+  <div class="entry-content my-3">
     <!-- ===========================
         Content / Description
     =========================== -->
-    <h2>Description of Strategy</h2>
+    <h2 class="mb-3">Description of Strategy</h2>
     <?php the_content(); ?>
-    <p><small><span class="text-uppercase">Also known as<br/>
-      <?php the_field('other_names')?></small></p>
+    <?php if ( get_field('other_names') ): ?>
+    <h3 class="h4">Also known as...</h3>
+      <p><?php the_field('other_names')?></p>
+    <?php endif; ?>
     <!-- ===========================
         Content / Discussion
     =========================== -->
-    <h2>Discussion of Effectiveness</h2>
+    <h2 class="mb-3">Discussion of Effectiveness</h2>
     <!--Alcohol-->
     <?php if( get_field('discussion_alcohol') ): ?>
       <h3>Alcohol</h3>
@@ -66,7 +67,7 @@
   <!-- ===========================
   ENTRY FOOTER
   =========================== -->
-  <footer class="entry-footer">
+  <footer class="entry-footer my-5">
     <!-- ===========================
     Reference tabs
     =========================== -->

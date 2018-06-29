@@ -10,6 +10,9 @@
 ?>
 
 <aside id="secondary" class="widget-area col-md-2 order-last">
+  <div class="widget mb-3">
+  <?php wpfp_link() ?>
+</div>
 
   <!-- ===========================
   Effectiveness

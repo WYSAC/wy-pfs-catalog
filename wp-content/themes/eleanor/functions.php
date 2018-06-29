@@ -130,6 +130,15 @@ function eleanor_widgets_init() {
 		'before_title'  => '<h3 class="widget-title">',
 		'after_title'   => '</h3>',
 	) );
+	register_sidebar( array(
+		'name'          => esc_html__( 'Depot Landing Page: Site Description', 'eleanor' ),
+		'id'            => 'depot-description',
+		'description'   => esc_html__( 'This text will appear on the Depot Homepage under the site title', 'eleanor' ),
+		'before_widget' => '<div class="depot-site-description text-shadow">',
+		'after_widget'  => '</div>',
+		'before_title'  => '',
+		'after_title'   => '',
+	) );
 }
 add_action( 'widgets_init', 'eleanor_widgets_init' );
 
@@ -249,7 +258,7 @@ add_filter('excerpt_length', 'et_excerpt_length');
 
 function et_excerpt_more($more) {
     global $post;
-    return '<div class="view-full-post"><a href="'. get_permalink($post->ID) . '" class="view-full-post-btn">View Strategy</a></div>';
+    return '<div class="view-full-post"><a href="'. get_permalink($post->ID) . '" class="view-full-post-btn btn btn-secondary">View Strategy</a></div>';
 }
 add_filter('excerpt_more', 'et_excerpt_more');
 
@@ -261,6 +270,43 @@ function inline_svg($name) {
 	include($file);
 }
 
+/* ====================================================
+* Customize the page_titles for various archive pages
+======================================================= */
 
+function my_theme_archive_title( $title ) {
+    if ( is_category() ) {
+        $title = single_cat_title( '', false );
+    } elseif ( is_tag() ) {
+        $title = single_tag_title( '', false );
+    } elseif ( is_author() ) {
+        $title = '<span class="vcard">' . get_the_author() . '</span>';
+    } elseif ( is_post_type_archive() ) {
+        $title = post_type_archive_title( '', false );
+    } elseif ( is_tax('causal-domain') ) {
+        $title = single_term_title( '<p class="archive-pre-title">Causal Domain</p>', false );
+    } elseif ( is_tax('tobacco-goals') ) {
+			$title = single_term_title( '<p class="archive-pre-title">Tobacco Goal</p>', false );
+} elseif (is_tax('effectiveness-indicator') ) {
+	$title = single_term_title( '<p class="archive-pre-title">Strategy Effectiveness</p>', false );
+} elseif (is_tax('evidence') ) {
+	$title = single_term_title( '<p class="archive-pre-title">Strength of Evidence</p>', false );
+}
+    return $title;
+}
+
+add_filter( 'get_the_archive_title', 'my_theme_archive_title' );
+
+
+//Exclude pages from WordPress Search
+if (!is_admin()) {
+function wpb_search_filter($query) {
+if ($query->is_search) {
+$query->set('post_type', 'strategies');
+}
+return $query;
+}
+add_filter('pre_get_posts','wpb_search_filter');
+}
 
 ?>

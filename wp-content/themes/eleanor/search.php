@@ -9,34 +9,67 @@
 
 get_header(); ?>
 
-<div id="primary" class="content-area">
-	<main id="main" class="site-main main">
+<div id="primary" class="content-area col">
+	<main id="main" class="site-main main main-search">
 
 
 		<?php
 		if ( have_posts() ) : ?>
 
-			<header class="page-header">
-				<h1 class="page-title"><?php
+			<header class="page-header mb-4">
+				<h1 class="page-title">
+					<p class="archive-pre-title">Search Results</p><?php
 					/* translators: %s: search query. */
-					printf( esc_html__( 'Search Results for: %s', 'eleanor' ), '<span>' . get_search_query() . '</span>' );
+					printf( esc_html__( '%s', 'eleanor' ), '<span class="font-italic">' . get_search_query() . '</span>' );
 				?></h1>
 			</header><!-- .page-header -->
 
+			<table id="strategy-archive-table" class="table table-responsive">
+				<thead>
+			    <tr>
+			      <th scope="col"><i class="fa fa-circle" title="Effectiveness"></i></th>
+			      <th scope="col">Strategy Name</th>
+			      <th scope="col">Domain &amp; Goal</th>
+			      <th scope="col">Target Substance</th>
+			      <th scope="col">&nbsp;</th>
+			    </tr>
+			  </thead>
+			  <tbody>
 			<?php
 			/* Start the Loop */
 			while ( have_posts() ) : the_post();
+			?>
+			<tr>
+				<td scope="col">
+					<?php
+					$effective = get_field('indicator'); ?>
+					<i class="fas fa-circle" style="color:#<?php echo $effective->slug; ?>;" title="<?php echo $effective->name;?>"></i>
+					<span class="sr-only"><?php echo $effective->name ?></span>
+				</span>
+			</td>
+				<td scope="col"><a href="<?php the_permalink();?>"><?php the_title(); ?></a></td>
+				<td scope="col"><?php the_terms( $post->ID, 'causal-domain', 'Causal Domains: ', ', '); ?><br/><?php the_terms( $post->ID, 'tobacco-goals', 'Tobacco Goals: ', ', '); ?></td>
+				<td scope="col">
+					<?php
+		      if( in_array( 'tobacco', get_field('target_substances') ) )
+		      {
+		        echo '<i class="fas fa-smoking" title="Tobacco"></i>';
+		      }
+		      if( in_array( 'alcohol', get_field('target_substances') ) )
+		      {
+		        echo '<i class="fas fa-glass-martini" title="Alcohol"></i>';
+		      }
+		      if( in_array( 'other-drugs', get_field('target_substances') ) )
+		      {
+		        echo '<i class="fas fa-pills" title="Prescription and other drugs"></i>';
+		      }
+		      ?></td>
+					<td scope="col"><a href="<?php the_permalink();?>" class="btn btn-secondary">View Strategy</a></td>
+				</tr>
+			<?php endwhile;?>
+		</table>
 
-				/**
-				 * Run the loop for the search to output the results.
-				 * If you want to overload this in a child theme then include a file
-				 * called content-search.php and that will be used instead.
-				 */
-				get_template_part( 'template-parts/content', 'search' );
-
-			endwhile;
-
-			the_posts_navigation();
+			<?php
 
 		else :
 

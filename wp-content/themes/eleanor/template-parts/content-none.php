@@ -9,42 +9,27 @@
 
 ?>
 
-<section class="no-results not-found">
-	<header class="page-header">
-		<h1 class="page-title"><?php esc_html_e( 'Nothing Found', 'eleanor' ); ?></h1>
+<section class="no-results not-found row">
+	<header class="page-header col-12">
+		<h1 class="page-title"><?php esc_html_e( 'Oops...', 'eleanor' ); ?></h1>
 	</header><!-- .page-header -->
 
-	<div class="page-content">
+	<div class="page-content col-12">
 		<?php
-		if ( is_home() && current_user_can( 'publish_posts' ) ) : ?>
+		if ( is_search() ) : ?>
 
-			<p><?php
-				printf(
-					wp_kses(
-						/* translators: 1: link to WP admin new post page. */
-						__( 'Ready to publish your first post? <a href="%1$s">Get started here</a>.', 'eleanor' ),
-						array(
-							'a' => array(
-								'href' => array(),
-							),
-						)
-					),
-					esc_url( admin_url( 'post-new.php' ) )
-				);
-			?></p>
-
-		<?php elseif ( is_search() ) : ?>
-
-			<p><?php esc_html_e( 'Sorry, but nothing matched your search terms. Please try again with some different keywords.', 'eleanor' ); ?></p>
+			<p><?php esc_html_e( 'It looks like we couldn&rsquo;t find anything that matched your search. Try using different keywords', 'eleanor' ); ?></p>
 			<?php
 				get_search_form();
 
-		else : ?>
+		elseif ( is_tax() ) : ?>
 
+			<p><?php esc_html_e( 'It looks like no strategies are available for that parameter.  Try looking for another.', 'eleanor' ); ?></p>
+			<?php
+				get_search_form();
+			else: ?>
 			<p><?php esc_html_e( 'It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps searching can help.', 'eleanor' ); ?></p>
-			<?php
-				get_search_form();
-
+<?php
 		endif; ?>
 	</div><!-- .page-content -->
 </section><!-- .no-results -->

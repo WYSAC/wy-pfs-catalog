@@ -28,8 +28,8 @@
 		<header id="masthead" class="depot-home-header position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-light">
 			<div class="col-md-8 p-lg-5 mx-auto my-5">
 				<a href="#" class="navbar-brand brand-logo depot-brand-logo" title="Wyoming Prevention Depot"><?php inline_svg('depot-logo');?> </a>
-				<h1 class="display-1  text-white"><small class="font-weight-light">Wyoming</small><br/>Prevention Depot</h1>
-				<p class="lead text-white">Here's a little description</p>
+				<h1 class="display-1  text-white text-shadow"><small class="font-weight-light">Wyoming</small><br/>Prevention Depot</h1>
+				<?php dynamic_sidebar('depot-description'); ?>
 			</div>
 		</header><!-- #masthead -->
 		<div id="content" class="site-content">

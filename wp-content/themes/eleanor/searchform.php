@@ -23,10 +23,10 @@
 </form>*/
 ?>
 
-<form action="/" method="get" class="inline-form mr-4">
+<form action="/" method="get" class="inline-form">
     <label for="search" class="sr-only">Search in <?php echo home_url( '/' ); ?></label>
     <div class="input-group">
-    <input type="text" name="s" id="search" value="<?php the_search_query(); ?>" class="form-control" placeholder="Search" aria-describedby="searchButton" />
+    <input type="text" name="s" id="search" value="<?php the_search_query(); ?>" class="form-control" placeholder="Search Strategies" aria-describedby="searchButton" />
 <div class="input-group-append">
   <button class="btn btn-secondary" type="submit" value="<?php the_search_query();?>"><i class="fa fa-search" name="Search" title="Search"></i></button>
 </div>
